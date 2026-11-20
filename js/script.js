@@ -23,7 +23,7 @@ function exibirProdutos() {
                     <button class="btn-adicionar" onclick="adicionarItem(${produto.id})" ${produto.estoque === 0 ? "disabled" : ""}>
                     ${produto.estoque === 0 ? "Out of stock" : "Add"}
                     </button>
-                </div>`
+                </div>`;
     }
 }
 
@@ -37,7 +37,21 @@ function adicionarItemCarrinho(id){
 
     //VALIDAÇÕES
     carrinho.push({ id: produto.id, quantidade: 1})
+    atualizarCarrinho();
 
+}
+
+function atualizarCarrinho(){
+    const lista = document.getElementById("lista-carrinho");
+    lista.innerHTML = "";
+
+    if(carrinho.length === 0){
+        lista.innerHTML = `
+        <div class="carrinho-vazio">
+           <p></p>
+           <p>Your Shopping Cart is empty!</p>
+        </div>`;
+    }
 }
 
 exibirProdutos();
